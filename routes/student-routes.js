@@ -7,8 +7,7 @@ router.get("/", async (req, res) => {
   try {
     let studentData = await Student.find({}).exec();
     // return res.send(studentData);
-    console.log(studentData);
-    return res.send(studentData);
+    // console.log(studentData);
     return res.render("students", { studentData });
   } catch (e) {
     // return res.status(500).send("尋找資料時,發生錯誤");
@@ -21,6 +20,8 @@ router.get("/new", async (req, res) => {
 });
 
 router.get("/:_id", async (req, res, next) => {
+  console.log("檢查 req.params : ");
+  console.log(req.params);
   try {
     let { _id } = req.params;
     let foundStudent = await Student.findOne({ _id }).exec();
